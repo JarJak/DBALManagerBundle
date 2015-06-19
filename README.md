@@ -10,13 +10,13 @@ Instalation:
 
 ```json
 "require": {
-"jarjak/dbal-manager-bundle": "dev-master"
+	"jarjak/dbal-manager-bundle": "dev-master"
 },
 "repositories": [
-{
-    "type": "git",
-    "url": "https://github.com/JarJak/DBALManagerBundle"
-}
+	{
+		"type": "git",
+		"url": "https://github.com/JarJak/DBALManagerBundle"
+	}
 ],
 ```
 

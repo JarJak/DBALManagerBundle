@@ -8,19 +8,19 @@ Instalation:
 
 1. In your composer.json file, add:
 
-```
-    "require": {
-        "jarjak/dbal-manager-bundle": "dev-master"
-    },
-	"repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/JarJak/DBALManagerBundle"
-        }
-    ],
+```json
+"require": {
+"jarjak/dbal-manager-bundle": "dev-master"
+},
+"repositories": [
+{
+    "type": "git",
+    "url": "https://github.com/JarJak/DBALManagerBundle"
+}
+],
 ```
 
-2. Run ```composer install```
+2. Run: ```composer install```
 
 3. Add bundle to your AppKernel.php:
 

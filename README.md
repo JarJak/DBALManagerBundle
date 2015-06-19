@@ -3,7 +3,7 @@ DBALManagerBundle
 
 This bundle provides DBALManager as a Symfony service.
 
-Instalation:
+Installation:
 ------------
 
 1. In your composer.json file, add:

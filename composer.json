@@ -1,0 +1,23 @@
+{
+    "name": "jarjak/dbal-manager-bundle",
+    "keywords": ["dbal", "database", "persistence", "queryobject"],
+    "homepage": "https://github.com/JarJak/DBALManagerBundle",
+    "authors": [
+        {
+            "name": "Jarek Jakubowski",
+            "email": "egger1991@gmail.com"
+        }
+    ],
+    "require": {
+        "jarjak/dbal-manager": "dev-master"
+    },
+	"repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/JarJak/DBALManager"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "JarJak": "src" }
+    }
+}

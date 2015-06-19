@@ -1,0 +1,5 @@
+services:
+    jarjak.dbal_manager:
+        class: JarJak\DBALManager
+        calls:
+            - [setConnection, ["@database_connection"]]

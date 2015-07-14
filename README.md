@@ -99,6 +99,5 @@ DBALManager can use VarDumper dump SQL Query from QueryBuilder ready to be copyp
 If you don't use QueryBuilder you can still dump parametrized SQL with:
 
 ```php
-/* @var QueryBuilder $queryBuilder */
 \JarJak\DBALManager::dumpSql($sql, $params);
 ```

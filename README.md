@@ -1,6 +1,7 @@
 DBALManagerBundle
 ==================
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/26cdcbf9-dd47-452a-a933-f954ecd90d03/small.png)](https://insight.sensiolabs.com/projects/26cdcbf9-dd47-452a-a933-f954ecd90d03)
 This bundle provides DBALManager as a Symfony service.
 
 Installation:
@@ -92,4 +93,11 @@ DBALManager can use VarDumper dump SQL Query from QueryBuilder ready to be copyp
 ```php
 /* @var QueryBuilder $queryBuilder */
 \JarJak\DBALManager::dumpQuery($queryBuilder);
+```
+
+If you don't use QueryBuilder you can still dump parametrized SQL with:
+
+```php
+/* @var QueryBuilder $queryBuilder */
+\JarJak\DBALManager::dumpSql($sql, $params);
 ```

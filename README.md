@@ -35,12 +35,9 @@ class AppKernel extends Kernel
             //...
             new JarJak\DBALManagerBundle\JarJakDBALManagerBundle(),
         );
-
         //...
-
         return $bundles;
     }
-
     //...
 }
 ```
@@ -93,11 +90,11 @@ DBALManager can use VarDumper dump SQL Query from QueryBuilder ready to be copyp
 
 ```php
 /* @var QueryBuilder $queryBuilder */
-\JarJak\DBALManager::dumpQuery($queryBuilder);
+JarJak\DBALManager::dumpQuery($queryBuilder);
 ```
 
 If you don't use QueryBuilder you can still dump parametrized SQL with:
 
 ```php
-\JarJak\DBALManager::dumpSql($sql, $params);
+JarJak\DBALManager::dumpSql($sql, $params);
 ```

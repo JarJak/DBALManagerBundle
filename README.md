@@ -8,23 +8,10 @@ This bundle provides DBALManager as a Symfony service.
 Installation:
 ------------
 
-1. In your composer.json file, add:
+1. Run:
+```composer require jarjak/dbal-manager-bundle```
 
-```json
-"require": {
-	"jarjak/dbal-manager-bundle": "dev-master"
-},
-"repositories": [
-	{
-		"type": "git",
-		"url": "https://github.com/JarJak/DBALManagerBundle"
-	}
-],
-```
-
-2. Run: ```composer install```
-
-3. Add bundle to your AppKernel.php:
+2. Add bundle to your AppKernel.php:
 
 ```php
 class AppKernel extends Kernel

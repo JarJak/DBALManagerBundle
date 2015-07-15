@@ -13,12 +13,6 @@
     "require": {
         "jarjak/dbal-manager": "dev-master"
     },
-	"repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/JarJak/DBALManager"
-        }
-    ],
     "autoload": {
         "psr-0": { "JarJak": "src" }
     }

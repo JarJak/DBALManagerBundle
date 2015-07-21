@@ -3,7 +3,7 @@ DBALManagerBundle
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/26cdcbf9-dd47-452a-a933-f954ecd90d03/small.png)](https://insight.sensiolabs.com/projects/26cdcbf9-dd47-452a-a933-f954ecd90d03)
 
-This bundle provides DBALManager as a Symfony service.
+This bundle provides [DBALManager](https://github.com/JarJak/DBALManager) as a Symfony 2 service.
 
 Installation:
 ------------

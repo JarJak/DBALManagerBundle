@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="DBALManagerBundle : Bundle to integrate DBALManager with Symfony2">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>DBALManagerBundle</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/JarJak/DBALManagerBundle">View on GitHub</a>
+
+          <h1 id="project_title">DBALManagerBundle</h1>
+          <h2 id="project_tagline">Bundle to integrate DBALManager with Symfony2</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/JarJak/DBALManagerBundle/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/JarJak/DBALManagerBundle/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="dbalmanagerbundle" class="anchor" href="#dbalmanagerbundle" aria-hidden="true"><span class="octicon octicon-link"></span></a>DBALManagerBundle</h1>
+
+<p><a href="https://insight.sensiolabs.com/projects/26cdcbf9-dd47-452a-a933-f954ecd90d03"><img src="https://insight.sensiolabs.com/projects/26cdcbf9-dd47-452a-a933-f954ecd90d03/small.png" alt="SensioLabsInsight"></a></p>
+
+<p>This bundle provides DBALManager as a Symfony service.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation:</h2>
+
+<ol>
+<li><p>Run:
+<code>composer require jarjak/dbal-manager-bundle</code></p></li>
+<li><p>Add bundle to your AppKernel.php:</p></li>
+</ol>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-k">class</span> <span class="pl-en">AppKernel</span> <span class="pl-k">extends</span> <span class="pl-e">Kernel</span></span>
+<span class="pl-s1">{</span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">registerBundles</span>()</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-smi">$bundles</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">            <span class="pl-c">//...</span></span>
+<span class="pl-s1">            <span class="pl-k">new</span> <span class="pl-c1">JarJak\DBALManagerBundle\</span><span class="pl-c1">JarJakDBALManagerBundle</span>(),</span>
+<span class="pl-s1">        );</span>
+<span class="pl-s1">        <span class="pl-c">//...</span></span>
+<span class="pl-s1">        <span class="pl-k">return</span> <span class="pl-smi">$bundles</span>;</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1">    <span class="pl-c">//...</span></span>
+<span class="pl-s1">}</span></pre></div>
+
+<h2>
+<a id="example-usage" class="anchor" href="#example-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example usage:</h2>
+
+<p>Lets say we have user table with: </p>
+
+<ul>
+<li>unique usernames and emails</li>
+<li>column active can contain only 0 or 1 (not nullable)</li>
+<li>column address can be null</li>
+</ul>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-smi">$sqlArray</span> <span class="pl-k">=</span> [</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>username<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>JohnKennedy<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>email<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>john@kennedy.gov<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$password</span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>address<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>active<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">0</span>,</span>
+<span class="pl-s1">];</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$DBALManager</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>get(<span class="pl-s"><span class="pl-pds">'</span>jarjak.dbal_manager<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$DBALManager</span><span class="pl-k">-&gt;</span>insertOrUpdateByArray(<span class="pl-s"><span class="pl-pds">'</span>user<span class="pl-pds">'</span></span>, <span class="pl-smi">$sqlArray</span>, <span class="pl-c1">2</span>, [<span class="pl-s"><span class="pl-pds">'</span>active<span class="pl-pds">'</span></span>]);</span></pre></div>
+
+<h2>
+<a id="multiple-database-connections" class="anchor" href="#multiple-database-connections" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multiple database connections</h2>
+
+<p>If you have more than one DB connection, then you can create multiple managers, one for each connection.
+All you need is to pass DBAL Connection service to setConnection().</p>
+
+<div class="highlight highlight-yaml"><pre>    <span class="pl-s"><span class="pl-ent">secondary_dbal_manager:</span></span>
+        <span class="pl-s"><span class="pl-ent">class:</span> <span class="pl-s">JarJak\DBALManager</span></span>
+        <span class="pl-s"><span class="pl-ent">calls:</span></span>
+            <span class="pl-s">- <span class="pl-s">[setConnection, ["@secondary_connection"]]</span></span></pre></div>
+
+<p>or:</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-smi">$secondaryDBALManager</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">JarJak\</span><span class="pl-c1">DBALManager</span>();</span>
+<span class="pl-s1"><span class="pl-smi">$secondaryDBALManager</span><span class="pl-k">-&gt;</span>setConnection(<span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>get(<span class="pl-s"><span class="pl-pds">'</span>secondary_connection<span class="pl-pds">'</span></span>));</span></pre></div>
+
+<h2>
+<a id="dumping-queries" class="anchor" href="#dumping-queries" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dumping Queries</h2>
+
+<p>DBALManager can use VarDumper dump SQL Query from QueryBuilder ready to be copypasted into database server (with parameters already included).</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-c">/* @var QueryBuilder $queryBuilder */</span></span>
+<span class="pl-s1"><span class="pl-c1">JarJak\</span><span class="pl-c1">DBALManager</span><span class="pl-k">::</span>dumpQuery(<span class="pl-smi">$queryBuilder</span>);</span></pre></div>
+
+<p>If you don't use QueryBuilder you can still dump parametrized SQL with:</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-c1">JarJak\</span><span class="pl-c1">DBALManager</span><span class="pl-k">::</span>dumpSql(<span class="pl-smi">$sql</span>, <span class="pl-smi">$params</span>);</span></pre></div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">DBALManagerBundle maintained by <a href="https://github.com/JarJak">JarJak</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>

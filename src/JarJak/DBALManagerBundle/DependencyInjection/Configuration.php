@@ -17,7 +17,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('jarjak.dbal_manager');
+        $treeBuilder->root('jarjak_dbal_manager');
         return $treeBuilder;
     }
 }

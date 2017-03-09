@@ -11,9 +11,11 @@
         }
     ],
     "require": {
-        "jarjak/dbal-manager": "^1.0"
+        "jarjak/dbal-manager": "^2.0"
     },
     "autoload": {
-        "psr-0": { "JarJak": "src" }
+        "psr-4": {
+            "JarJak\\": "src/JarJak"
+        }
     }
 }

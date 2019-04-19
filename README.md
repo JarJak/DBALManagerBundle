@@ -29,8 +29,28 @@ class AppKernel extends Kernel
 }
 ```
 
-Example usage:
---------------
+Simple example:
+---
+
+You want to insert data or update them if row already exists.
+
+```php
+$sqlArray = [
+	'id' => 1,
+	'username' => 'JohnKennedy',
+	'email' => 'john@kennedy.gov'
+];
+
+$DBALManager = $this->get('jarjak.dbal_manager');
+$DBALManager->insertOrUpdateByArray('user', $sqlArray);
+```
+Or you want to just skip this row if it exists:
+```php
+$DBALManager->insertIgnoreByArray('user', $sqlArray);
+```
+
+Advanced example:
+---
 
 Lets say we have user table with: 
 - unique usernames and emails
@@ -54,15 +74,19 @@ Multiple database connections
 -----------------------------
 
 If you have more than one DB connection, then you can create multiple managers, one for each connection.
-All you need is to pass DBAL Connection service to setConnection().
+All you need is to pass DBAL Connection service (`@secondary_connection`) to setConnection() or constructor.
 
 ```yaml
     secondary_dbal_manager:
         class: JarJak\DBALManager
-        calls:
-            - [setConnection, ["@secondary_connection"]]
+        arguments:
+	    - "@secondary_connection"
 ```
+or:
 
+```php
+$secondaryDBALManager = new JarJak\DBALManager($this->get('secondary_connection'));
+```
 or:
 
 ```php

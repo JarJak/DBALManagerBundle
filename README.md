@@ -29,46 +29,14 @@ class AppKernel extends Kernel
 }
 ```
 
-Simple example:
----
-
-You want to insert data or update them if row already exists.
-
-```php
-$sqlArray = [
-	'id' => 1,
-	'username' => 'JohnKennedy',
-	'email' => 'john@kennedy.gov'
-];
-
-$dbalManager = $this->get('jarjak.dbal_manager');
-$dbalManager->insertOrUpdate('user', $sqlArray);
+Usage examples:
+---------------
+You can get DBALManager as service in two ways:
 ```
-Or you want to just skip this row if it exists:
-```php
-$dbalManager->insertIgnore('user', $sqlArray);
+$container->get('jarjak.dbal_manager');
+$container->get(DBALManager::class);
 ```
-
-Advanced example:
----
-
-Lets say we have user table with: 
-- unique usernames and emails
-- column active can contain only 0 or 1 (not nullable)
-- column address can be null
-
-```php
-$sqlArray = [
-	'username' => 'JohnKennedy',
-	'email' => 'john@kennedy.gov'
-	'password' => $password,
-	'address' => '',
-	'active' => 0,
-];
-
-$dbalManager = $this->get(DBALManager::class);
-$dbalManager->insertOrUpdate('user', $sqlArray, 2, ['active']);
-```
+For usage examples please refer to [DBALManager documentation](https://github.com/JarJak/DBALManager/blob/master/README.md).
 
 Multiple database connections
 -----------------------------
@@ -81,25 +49,4 @@ secondary_dbal_manager:
     class: JarJak\DBALManager
     arguments:
         - "@secondary_connection"
-```
-or:
-
-```php
-$secondaryDBALManager = new JarJak\DBALManager($this->get('secondary_connection'));
-```
-
-Dumping Queries
----------------
-
-DBALManager can use VarDumper dump SQL Query from QueryBuilder ready to be copypasted into database server (with parameters already included).
-
-```php
-/* @var QueryBuilder $queryBuilder */
-JarJak\SqlDumper::dumpQuery($queryBuilder);
-```
-
-If you don't use QueryBuilder you can still dump parametrized SQL with:
-
-```php
-JarJak\SqlDumper::dumpSql($sql, $params);
 ```

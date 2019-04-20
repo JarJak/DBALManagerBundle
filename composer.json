@@ -3,7 +3,7 @@
     "description": "Bundle to provide DBALManager as a Symfony service.",
     "keywords": ["dbal", "database", "persistence", "queryobject"],
     "homepage": "https://github.com/JarJak/DBALManagerBundle",
-    "license": "GPL-2.0",
+    "license": "MIT",
     "authors": [
         {
             "name": "Jarek Jakubowski",
@@ -11,7 +11,8 @@
         }
     ],
     "require": {
-        "jarjak/dbal-manager": "^2.0"
+        "jarjak/dbal-manager": "^3.0",
+        "doctrine/doctrine-bundle": "^1.6"
     },
     "autoload": {
         "psr-4": {

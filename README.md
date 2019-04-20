@@ -11,7 +11,7 @@ Installation:
 1. Run:
 ```composer require jarjak/dbal-manager-bundle```
 
-2. Add bundle to your AppKernel.php:
+2. [Symfony <4 only] Add bundle to your AppKernel.php:
 
 ```php
 class AppKernel extends Kernel
@@ -41,12 +41,12 @@ $sqlArray = [
 	'email' => 'john@kennedy.gov'
 ];
 
-$DBALManager = $this->get('jarjak.dbal_manager');
-$DBALManager->insertOrUpdateByArray('user', $sqlArray);
+$dbalManager = $this->get('jarjak.dbal_manager');
+$dbalManager->insertOrUpdate('user', $sqlArray);
 ```
 Or you want to just skip this row if it exists:
 ```php
-$DBALManager->insertIgnoreByArray('user', $sqlArray);
+$dbalManager->insertIgnore('user', $sqlArray);
 ```
 
 Advanced example:
@@ -66,8 +66,8 @@ $sqlArray = [
 	'active' => 0,
 ];
 
-$DBALManager = $this->get('jarjak.dbal_manager');
-$DBALManager->insertOrUpdateByArray('user', $sqlArray, 2, ['active']);
+$dbalManager = $this->get(DBALManager::class);
+$dbalManager->insertOrUpdate('user', $sqlArray, 2, ['active']);
 ```
 
 Multiple database connections
@@ -77,21 +77,15 @@ If you have more than one DB connection, then you can create multiple managers, 
 All you need is to pass DBAL Connection service (`@secondary_connection`) to setConnection() or constructor.
 
 ```yaml
-    secondary_dbal_manager:
-        class: JarJak\DBALManager
-        arguments:
-	    - "@secondary_connection"
+secondary_dbal_manager:
+    class: JarJak\DBALManager
+    arguments:
+        - "@secondary_connection"
 ```
 or:
 
 ```php
 $secondaryDBALManager = new JarJak\DBALManager($this->get('secondary_connection'));
-```
-or:
-
-```php
-$secondaryDBALManager = new JarJak\DBALManager();
-$secondaryDBALManager->setConnection($this->get('secondary_connection'));
 ```
 
 Dumping Queries
